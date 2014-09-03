@@ -1,0 +1,51 @@
+<funkload version="1.16.1" time="2014-09-03T13:10:26.798618">
+<config key="sleep_time_min" value="0.0" />
+<config key="node" value="erzhuos-MacBook.local" />
+<config key="startup_delay" value="0.001" />
+<config key="cycles" value="[5, 10, 100]" />
+<config key="cycle_time" value="1.0" />
+<config key="description" value="Test the searchByLocation API" />
+<config key="configuration_file" value="/Users/apple/git/uber/code_challenge/foodtruck/LoadTest.conf" />
+<config key="class_title" value="LoadTest" />
+<config key="server_url" value="http://localhost:8000/foodtrucks" />
+<config key="module" value="test_load" />
+<config key="id" value="test_load" />
+<config key="class_description" value="Load test for the foodtruck REST APIs" />
+<config key="sleep_time" value="0.01" />
+<config key="sleep_time_max" value="0.5" />
+<config key="duration" value="60" />
+<config key="method" value="test_load" />
+<config key="log_xml" value="/Users/apple/git/uber/code_challenge/foodtruck/loadtests/load-bench.xml" />
+<config key="class" value="LoadTest" />
+<config key="python_version" value="2.7.3" />
+<response cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.787569&amp;longitude=-122.378510&amp;radius=4.576393&amp;limit=34" code="200" description="Get url" time="1409764226.8" duration="1.12119603157" />
+<testResult cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load"  time="1409764226.8" result="Successful" steps="1" duration="1.50629401207" connection_duration="1.12119603157" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<response cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.785524&amp;longitude=-122.434832&amp;radius=1.257827&amp;limit=91" code="200" description="Get url" time="1409764226.81" duration="1.53718495369" />
+<response cycle="000" cvus="005" thread="001" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.729734&amp;longitude=-122.425947&amp;radius=7.860354&amp;limit=2" code="200" description="Get url" time="1409764226.8" duration="1.55983400345" />
+<response cycle="000" cvus="005" thread="004" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.757653&amp;longitude=-122.448929&amp;radius=8.775603&amp;limit=96" code="200" description="Get url" time="1409764226.81" duration="1.69702410698" />
+<response cycle="000" cvus="005" thread="003" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.747369&amp;longitude=-122.393872&amp;radius=4.981014&amp;limit=13" code="200" description="Get url" time="1409764226.81" duration="1.72690987587" />
+<response cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.789615&amp;longitude=-122.399938&amp;radius=1.594793&amp;limit=74" code="200" description="Get url" time="1409764228.32" duration="0.409591913223" />
+<testResult cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load"  time="1409764226.81" result="Successful" steps="1" duration="1.99922084808" connection_duration="1.53718495369" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load"  time="1409764228.32" result="Successful" steps="1" duration="0.495807886124" connection_duration="0.409591913223" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="001" suite="LoadTest" name="test_load"  time="1409764226.8" result="Successful" steps="1" duration="2.00938820839" connection_duration="1.55983400345" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="003" suite="LoadTest" name="test_load"  time="1409764226.81" result="Successful" steps="1" duration="2.05095791817" connection_duration="1.72690987587" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="004" suite="LoadTest" name="test_load"  time="1409764226.81" result="Successful" steps="1" duration="2.09568691254" connection_duration="1.69702410698" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<response cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.742331&amp;longitude=-122.416276&amp;radius=2.151820&amp;limit=55" code="200" description="Get url" time="1409764228.82" duration="0.673812866211" />
+<response cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.718323&amp;longitude=-122.424950&amp;radius=9.649160&amp;limit=72" code="200" description="Get url" time="1409764228.82" duration="0.686826944351" />
+<testResult cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load"  time="1409764228.82" result="Successful" steps="1" duration="0.732172012329" connection_duration="0.686826944351" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load"  time="1409764228.82" result="Successful" steps="1" duration="1.16789984703" connection_duration="0.673812866211" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<response cycle="000" cvus="005" thread="003" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.785943&amp;longitude=-122.426651&amp;radius=4.024154&amp;limit=23" code="200" description="Get url" time="1409764229.15" duration="1.00164890289" />
+<response cycle="000" cvus="005" thread="001" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.749091&amp;longitude=-122.393571&amp;radius=2.766460&amp;limit=3" code="200" description="Get url" time="1409764229.15" duration="1.00350904465" />
+<response cycle="000" cvus="005" thread="004" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.749598&amp;longitude=-122.377410&amp;radius=3.396066&amp;limit=62" code="200" description="Get url" time="1409764229.15" duration="1.00802707672" />
+<response cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.804183&amp;longitude=-122.386329&amp;radius=0.507506&amp;limit=47" code="200" description="Get url" time="1409764229.56" duration="0.615933895111" />
+<testResult cycle="000" cvus="005" thread="001" suite="LoadTest" name="test_load"  time="1409764229.15" result="Successful" steps="1" duration="1.10262393951" connection_duration="1.00350904465" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="004" suite="LoadTest" name="test_load"  time="1409764229.15" result="Successful" steps="1" duration="1.14648318291" connection_duration="1.00802707672" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load"  time="1409764229.56" result="Successful" steps="1" duration="0.851268053055" connection_duration="0.615933895111" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<response cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.810777&amp;longitude=-122.445628&amp;radius=6.413950&amp;limit=84" code="200" description="Get url" time="1409764230.0" duration="0.533325910568" />
+<testResult cycle="000" cvus="005" thread="003" suite="LoadTest" name="test_load"  time="1409764229.15" result="Successful" steps="1" duration="1.40615415573" connection_duration="1.00164890289" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="000" suite="LoadTest" name="test_load"  time="1409764230.0" result="Successful" steps="1" duration="0.943675994873" connection_duration="0.533325910568" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<response cycle="000" cvus="005" thread="001" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.799762&amp;longitude=-122.414979&amp;radius=3.806845&amp;limit=54" code="200" description="Get url" time="1409764230.27" duration="0.957564115524" />
+<response cycle="000" cvus="005" thread="004" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.802858&amp;longitude=-122.432694&amp;radius=6.644228&amp;limit=50" code="200" description="Get url" time="1409764230.31" duration="0.918862819672" />
+<response cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load" step="001" number="001" type="get" result="Successful" url="/foodtrucks/bylocation?latitude=37.781557&amp;longitude=-122.390740&amp;radius=2.141001&amp;limit=24" code="200" description="Get url" time="1409764230.42" duration="0.809461832047" />
+<testResult cycle="000" cvus="005" thread="002" suite="LoadTest" name="test_load"  time="1409764230.42" result="Successful" steps="1" duration="0.849867105484" connection_duration="0.809461832047" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />
+<testResult cycle="000" cvus="005" thread="004" suite="LoadTest" name="test_load"  time="1409764230.31" result="Successful" steps="1" duration="1.03600096703" connection_duration="0.918862819672" requests="1" pages="1" xmlrpc="0" redirects="0" images="0" links="0" />

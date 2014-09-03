@@ -56,42 +56,50 @@ def foodtruckByID(request, pk, format=None):
 	    foodtruck.delete()
 	    return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def foodtruckByKeyword(request, keyword, format=None):
+@api_view(['GET'])
+def foodtruckByKeyword(request,  format=None):
 	print "foodtruckByID"
 	"""
 	Retrieve, update or delete a foodtruck instance.
 	"""
 
-	foodtrucks = FoodTruck.objects.filter(Q(applicant__icontains=keyword) | Q(foodItems__icontains=keyword))
-
 	if request.method == 'GET':
+		if not 'keyword' in request.GET or not request.GET['keyword']:
+			return Response(status=status.HTTP_400_BAD_REQUEST)
+		else:
+			keyword = request.GET['keyword']
+		foodtrucks = FoodTruck.objects.filter(Q(applicant__icontains=keyword) | Q(fooditems__icontains=keyword))
+
 		serializer = FoodTruckSerializer(foodtrucks, many=True)
 		return Response(serializer.data)
 
-	elif request.method == 'PUT':
-	    serializer = FoodTruckSerializer(foodtrucks, data=request.DATA, many=True)
-	    if serializer.is_valid():
-	        serializer.save()
-	        return Response(serializer.data)
-	    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-	elif request.method == 'DELETE':
-		for foodtruck in foodtrucks:
-		    foodtruck.delete()
-		return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
-def foodtruckByLocation(request, latitude, longitude, radius, limit=15, format=None):
+def foodtruckByLocation(request, format=None):
 	print "foodtruckByLocation"
 	"""
 		Retrieve foodtrucks nearby a given location, the default limit of 
 		search is 15
 	"""
+	if not 'latitude' in request.GET or not request.GET['latitude']:
+		return Response(status=status.HTTP_400_BAD_REQUEST)
+	else:
+		latitude = request.GET['latitude']
+
+	if not 'longitude' in request.GET or not request.GET['longitude']:
+		return Response(status=status.HTTP_400_BAD_REQUEST)
+	else:
+		longitude = request.GET['longitude']
+
+	radius = Decimal(1)
+	limit = 15
+	if 'radius' in request.GET and request.GET['radius']:
+		radius = Decimal(request.GET['radius'])
+	if 'limit' in request.GET and request.GET['limit']:
+		limit = request.GET['limit']
+
 	lat = Decimal(latitude)
 	lon = Decimal(longitude)
-	radius = Decimal(radius)
-	#limit = Decimal(limit)
 	
 	foodtrucks = FoodTruck.objects.filter(latitude__range=(lat-radius*LAT_PER_MILE, lat+radius*LAT_PER_MILE),\
 									longitude__range=(lon-radius*LON_PER_MILE, lon+radius*LON_PER_MILE))

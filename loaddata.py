@@ -13,12 +13,12 @@ def getValue (m, key):
 	else:
 		return None
 
-def parseDate( str):
+def parseDate(str):
 	if str is None:
 		return None
 	else:
 		return parse(str)
-
+	
 data = urllib2.urlopen('http://data.sfgov.org/resource/rqzj-sfat.json')
 ftinfo = json.load(data)
 
@@ -35,26 +35,28 @@ for info in ftinfo:
 	lot = getValue(info, 'lot')
 	permit = getValue(info, 'permit')
 	status = getValue(info, 'status')
-	foodItems = getValue(info, 'fooditems')
+	fooditems = getValue(info, 'fooditems')
 	x = getValue(info, 'x')
 	y = getValue(info, 'y')
 	latitude = getValue(info, 'latitude')
 	longitude = getValue(info, 'longitude')
 	schedule = getValue(info, 'schedule')
-	priorPermit = getValue(info, 'priorpermit')
+	priorpermit = getValue(info, 'priorpermit')
 	noisent = parseDate(getValue(info, 'noisent'))
 	approved = parseDate(getValue(info, 'approved'))
 	received = parseDate(getValue(info, 'received'))
-	expirationDate = parseDate(getValue(info, 'expirationdate'))
+	expirationdate = parseDate(getValue(info, 'expirationdate'))
 
 	ft = FoodTruck( objectid=objectid ,  applicant=applicant ,  facilitytype=facilitytype ,  \
 					cnn=cnn ,  locationdescription=locationdescription ,  address=address ,\
 					blocklot=blocklot ,  block=block ,  lot=lot , permit=permit ,  \
-					status=status ,  foodItems=foodItems ,  x=x ,  y=y ,\
+					status=status ,  fooditems=fooditems ,  x=x ,  y=y ,\
 					latitude=latitude ,  longitude=longitude ,  schedule=schedule ,\
-					priorPermit=priorPermit ,  noisent=noisent ,  approved=approved ,\
-					received=received ,  expirationDate=expirationDate )
+					priorpermit=priorpermit ,  noisent=noisent ,  approved=approved ,\
+					received=received ,  expirationdate=expirationdate )
 	try:
 		ft.save()
 	except IntegrityError as e:
 		pass
+				
+	

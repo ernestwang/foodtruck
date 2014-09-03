@@ -22,7 +22,7 @@ class FoodTruck(models.Model):
 	lot = models.CharField(max_length=16, blank=True, null=True)
 	permit = models.CharField(max_length=16, blank=True, null=True)
 	status = models.CharField(max_length=16, blank=True, null=True)
-	foodItems = models.CharField(max_length=512, blank=True, null=True)
+	fooditems = models.CharField(max_length=512, blank=True, null=True)
 	x = models.DecimalField(max_digits=12, decimal_places=3, blank=True, null=True)
 	y = models.DecimalField(max_digits=12, decimal_places=3, blank=True, null=True)
 	latitude = models.DecimalField(db_index=True, max_digits=15, decimal_places=12, blank=True, null=True)
@@ -31,8 +31,8 @@ class FoodTruck(models.Model):
 	noisent = models.DateTimeField(blank=True, null=True)
 	approved = models.DateTimeField( blank=True, null=True)
 	received = models.DateTimeField( blank=True, null=True)
-	priorPermit = models.IntegerField(blank=True, null=True)
-	expirationDate = models.DateTimeField( blank=True, null=True)
+	priorpermit = models.IntegerField(blank=True, null=True)
+	expirationdate = models.DateTimeField( blank=True, null=True)
 	#location = models.CharField(max_length=64, blank=True, null=True)
 
 	class Meta:

@@ -79,10 +79,11 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+#USE_TZ = True
 
 DATETIME_INPUT_FORMATS = (
     '%Y-%m-%d %H:%M:%S',     # '2006-10-25 14:30:59'
+    '%Y-%m-%dT%H:%M:%S',     # '2006-10-25 14:30:59'
     '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
     '%Y-%m-%d %H:%M',        # '2006-10-25 14:30'
     '%Y-%m-%d',              # '2006-10-25'
@@ -96,6 +97,7 @@ DATETIME_INPUT_FORMATS = (
     '%m/%d/%y',              # '10/25/06'
     '%b %d %y',              # 'Oct 25 06'
     '%b %d %Y',              # 'Oct 25 2006'
+    '%b %d %Y %I:%M%p',              # 'Oct 25 2006'
 )
 
 # Static files (CSS, JavaScript, Images)

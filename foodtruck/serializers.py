@@ -11,5 +11,5 @@ class FoodTruckSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = FoodTruck
 		fields = ('objectid',	'applicant', 'facilitytype', 'cnn', 'locationdescription', 'address', 'blocklot', 'block', \
-				'lot', 'permit', 'status', 'foodItems', 'x', 'y', 'latitude', 'longitude', 'schedule', 'priorPermit',\
-				'approved', 'received', 'expirationDate', 'noisent')
+				'lot', 'permit', 'status', 'fooditems', 'x', 'y', 'latitude', 'longitude', 'schedule', 'priorpermit',\
+				'approved', 'received', 'expirationdate', 'noisent')
