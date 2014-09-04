@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.db.models import Q
+from django.db import transaction
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from foodtruck.models import FoodTruck
+from foodtruck.forms import QueryForm
 from foodtruck.serializers import FoodTruckSerializer
 from decimal import *
 import numpy as ny
@@ -12,7 +14,35 @@ LAT_PER_MILE = Decimal(0.0145) # approximate difference in degree of latitude pe
 LON_PER_MILE = Decimal(0.0189) # approximate difference in degree of longitude per mile
 RADIUS_EARTH = 3963
 
+def foodtruck_home(request):
+	context = {}
+
+    # Just display the registration form if this is a GET request.
+	if request.method == 'GET':
+		context['form'] = QueryForm()
+		return render(request, 'foodtruck/index.html', context)
+	elif request.method == 'POST':
+		form = QueryForm(request.POST)
+		context['form'] = form
+		
+		# Validates the form.
+		if not form.is_valid():
+			print "not is_valid"
+			return render(request, 'foodtruck/index.html', context)
+		print form.cleaned_data
+		lat = form.cleaned_data['latitude']
+		lng = form.cleaned_data['longitude']
+		rad = form.cleaned_data['radius']
+		lim = form.cleaned_data['limit']
+
+		foodtrucks = findFoodtrucksByLocation(lat, lng, rad, lim)
+		context['foodtrucks'] = foodtrucks
+
+	return render(request, 'foodtruck/index.html', context)
+    
+
 @api_view(['GET', 'POST'])
+@transaction.commit_on_success
 def foodtruck_list(request):
 	print "foodtruck_list"
 	"""
@@ -31,6 +61,7 @@ def foodtruck_list(request):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@transaction.commit_on_success
 def foodtruckByID(request, pk, format=None):
 	print "foodtruckByID"
 	"""
@@ -57,6 +88,7 @@ def foodtruckByID(request, pk, format=None):
 	    return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
+@transaction.commit_on_success
 def foodtruckByKeyword(request,  format=None):
 	print "foodtruckByID"
 	"""
@@ -75,8 +107,8 @@ def foodtruckByKeyword(request,  format=None):
 
 
 @api_view(['GET'])
+@transaction.commit_on_success
 def foodtruckByLocation(request, format=None):
-	print "foodtruckByLocation"
 	"""
 		Retrieve foodtrucks nearby a given location, the default limit of 
 		search is 15
@@ -97,26 +129,36 @@ def foodtruckByLocation(request, format=None):
 		radius = Decimal(request.GET['radius'])
 	if 'limit' in request.GET and request.GET['limit']:
 		limit = request.GET['limit']
+	
+	foodtrucks = findFoodtrucksByLocation(latitude, longitude, radius, limit)
+	if request.method == 'GET':
+		serializer = FoodTruckSerializer(foodtrucks, many=True)
+		return Response(serializer.data)
 
+def findFoodtrucksByLocation(latitude, longitude, radius, limit):
+	print "find FoodTrucks"
 	lat = Decimal(latitude)
 	lon = Decimal(longitude)
-	
+	radius = Decimal(radius)
+	limit = Decimal(limit)
+
 	foodtrucks = FoodTruck.objects.filter(latitude__range=(lat-radius*LAT_PER_MILE, lat+radius*LAT_PER_MILE),\
 									longitude__range=(lon-radius*LON_PER_MILE, lon+radius*LON_PER_MILE))
 	n = len(foodtrucks)
 	if n > 0:
+
 		ft_coords = ny.zeros((n, 2))
 		for (i, ft) in enumerate(foodtrucks):
 			ft_coords[i,0] = ft.latitude
 			ft_coords[i,1] = ft.longitude
+			#print ft_coords[i,:]
 
 		curr_coords = ny.array([float(latitude), float(longitude)])
 		dist = haversine(ft_coords, curr_coords)
 		foodtrucks = [ft for (d, ft) in sorted(zip(dist, foodtrucks))]
 		foodtrucks = foodtrucks[0:int(limit)]
-	if request.method == 'GET':
-		serializer = FoodTruckSerializer(foodtrucks, many=True)
-		return Response(serializer.data)
+	
+	return foodtrucks
 
 def haversine(coord1, coord2):
 	"""

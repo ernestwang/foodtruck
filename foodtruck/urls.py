@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = patterns('foodtruck.views',
-	url(r'^$', 'foodtruck_list'),
+	url(r'^$', 'foodtruck_home', name='foodtruck_home'),
     url(r'^foodtrucks/$', 'foodtruck_list', name='foodtruck_list'),
 
     url(r'^foodtrucks/(?P<pk>[0-9]+)$', 'foodtruckByID'),
