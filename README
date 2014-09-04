@@ -1,0 +1,25 @@
+Food Trucks
+
+A web app prototype designed for the backend track position application of Uber.
+
+Technical Choices
+Given the test's requirements and dataset available, I decided to develop a web application (3-year experience). I chose to implement the service on the top of Django, because for a prototype, convenience to use is one of the primary considerations. Django provides clear and straightforward architecture, powerful functionalities in networking, rendering, and database configuration, and thorough documentations. RESTful (1-year experience) APIs were implemented to increase the accessability to data. HTTP methods such as GET, POST, PUT and DELETE are supported to manage the dataset. Django REST framework, a RESTful version of Django (6-month experience) was selected to empower the APIs' implementation.
+Specifically, Two tiers are integrated in this prototype:
+Frontend: a page localizing yourself and helping search for the food trucks near you
+Backend: data services including 
+	1)GET the full list of food trucks info and POST (create) and a certain food truck info. link: /foodtrucks/; 
+	2) GET, PUT(update) and DELETE and certain food truck by ID. link: /foodtrucks/<id>/;
+	3) GET the food trucks featuring in the keyword given, the keyword is queried in both the name of the vendors and their food items. link: /foodtrucks/bykeyword?keyword=<kw>
+	4) GET the food trucks nearby, given a (latitude, longitude) coordinate, a range of search (radius, default = 1 mile) and a limit of search (limit, default = 15), results are sorted by distance. link: /foodtrucks/bylocation?latitude=<lat>&longitude=<lng>&radius=<rad>&limit=<lim>
+The first 3 backend tasks are straightforward, the fourth may need some more reasoning. First, decimal type is used to store the coordinate data, instead of float. The reason is the difference in latitudes or longitudes within a city is small, float may not be able to represent the exact numbers due to the binary representation. Decimal, however, can keep a certain decimal fraction without lossing fidelity. Second, Haversine formula is used the calculate the distance between two coordinates. Third, I use the numpy library to perform the calculations, since numpy is a fundamental scientific computation package in python, while the Haversine involves many trigonometric calculations. In addition, numpy is particular feasible to array or matrix computations, which is the case of task 4. Last but not least, optimization. Most of Uber does is about location. A couple of optimizing tricks are used to speed up the location query: the latitude and longitude are indexed in database for faster retrieval; to reduce the Haversine computations, the city of San Francisco is approximate as a planery (spherical actually) lattice, the search range is reduced to a square with edge length of 2*radius. Thus the results are retrieved from the database using the range query like: 
+	select * from foodtrucks 
+	where latitude > given_latitude-radius and latitude < given_latitude+radius and longitude > given_longitude-radius and longitude < given_longitude+radius
+The Haversine distances are further calcuated and sorted within the query results.
+Food trucks' information was obtained from DataSF: https://data.sfgov.org/Permitting/Mobile-Food-Facility-Permit/rqzj-sfat.
+
+Trade-offs
+Due to time consiserations and easy testing for both you and me, authentication is left out in this prototype, which is actually super important for a production. So is logging.
+Not all the attributes are supported to query in the database, such as address, license, etc.
+The application is primarily based in San Francisco, neither is the data available in other places nor are the features tested, such as the location optimization.
+Food truck information cannot be updated automatically. Haven't check if DataSF is real-time updated.
+Didn't pay much attention on frontend, more javascripts features and asynchronous requests (AJAX) could have made it cooler.

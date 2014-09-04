@@ -29,7 +29,7 @@ def foodtruck_home(request):
 		if not form.is_valid():
 			print "not is_valid"
 			return render(request, 'foodtruck/index.html', context)
-		print form.cleaned_data
+		#print form.cleaned_data
 		lat = form.cleaned_data['latitude']
 		lng = form.cleaned_data['longitude']
 		rad = form.cleaned_data['radius']
@@ -44,7 +44,7 @@ def foodtruck_home(request):
 @api_view(['GET', 'POST'])
 @transaction.commit_on_success
 def foodtruck_list(request):
-	print "foodtruck_list"
+	#print "foodtruck_list"
 	"""
 	List all foodtrucks, or create a new foodtruck.
 	"""
@@ -63,7 +63,7 @@ def foodtruck_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 @transaction.commit_on_success
 def foodtruckByID(request, pk, format=None):
-	print "foodtruckByID"
+	#print "foodtruckByID"
 	"""
 	Retrieve, update or delete a foodtruck instance.
 	"""
@@ -90,7 +90,7 @@ def foodtruckByID(request, pk, format=None):
 @api_view(['GET'])
 @transaction.commit_on_success
 def foodtruckByKeyword(request,  format=None):
-	print "foodtruckByID"
+	#print "foodtruckByID"
 	"""
 	Retrieve, update or delete a foodtruck instance.
 	"""
@@ -136,7 +136,7 @@ def foodtruckByLocation(request, format=None):
 		return Response(serializer.data)
 
 def findFoodtrucksByLocation(latitude, longitude, radius, limit):
-	print "find FoodTrucks"
+	#print "find FoodTrucks"
 	lat = Decimal(latitude)
 	lon = Decimal(longitude)
 	radius = Decimal(radius)

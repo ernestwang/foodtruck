@@ -6,9 +6,9 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      //var pos = new google.maps.LatLng(position.coords.latitude,
-       //                                position.coords.longitude);
-      var pos = new google.maps.LatLng(37.78116, -122.409178);
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                      position.coords.longitude);
+      //var pos = new google.maps.LatLng(37.78116, -122.409178);
       
       var infoWnd = new google.maps.InfoWindow({
         map: map,
