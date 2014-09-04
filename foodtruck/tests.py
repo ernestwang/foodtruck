@@ -15,19 +15,25 @@ class FoodTruckSimpleTestCase(TestCase):
 
 
 	def test_foodtrucks_applicant(self):
+		print 'Basic Test: get applicant'
 		dummy0 = FoodTruck.objects.get(applicant='dummy0')
 		dummy1 = FoodTruck.objects.get(applicant='dummy1')
 		self.assertEqual(dummy0.applicant, 'dummy0')
 		self.assertEqual(dummy1.applicant, 'dummy1')
+		print 'pass'
 
 	def test_foodtrucks_defaultvalues(self):
+		print 'Basic Test: default values'
 		dummy0 = FoodTruck.objects.get(applicant='dummy0')
 		dummy1 = FoodTruck.objects.get(applicant='dummy1')
 		self.assertEqual(dummy0.facilitytype, 'Truck')
 		self.assertEqual(dummy1.facilitytype, 'Push Cart')
+		print 'pass'
 
 	def test_foodtrucks_integrity(self):
+		print 'Basic Test: integrity constrains'
 		self.assertRaises(IntegrityError, FoodTruck.objects.create, objectid=0)
+		print 'pass'
 
 class FoodTruckAPITestCase(APITestCase):
 
@@ -35,6 +41,7 @@ class FoodTruckAPITestCase(APITestCase):
 		"""
 		Make sure can create a new foodtruck
 		"""
+		print 'API Test: create a new foodtruck'
 		url = reverse('foodtruck_list')
 		data = {"status" : "APPROVED",\
 		  "expirationdate" : "2015-03-15T00:00:00",\
@@ -81,12 +88,13 @@ class FoodTruckAPITestCase(APITestCase):
 				self.assertEqual(response.data[0][k], parse(v))
 			else:
 				self.assertEqual(response.data[0][k], v)
-		
+		print 'pass'
 
 	def test_foodtrucks_searchByID(self):
 		"""
 		Test retrieving, updating and deleting foodtruck record by ID
 		"""
+		print 'API Test: retrieving, updating and deleting foodtruck record by ID'
 		url = reverse('foodtruck_list')
 		data = {'objectid': 2, 'x': 1.0, 'y': 1.5}
 		response = self.client.post(url, data, format='json')
@@ -105,12 +113,14 @@ class FoodTruckAPITestCase(APITestCase):
 
 		response = self.client.delete('/foodtrucks/2', format='json')
 		self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-		
+		print 'pass'
 
 	def test_foodtrucks_searchByKeyword(self):
 		"""
-		Test retrieving, updating and deleting foodtruck record by keyword
+		Test retrieving foodtruck record by keyword
 		"""
+
+		print 'API Test: retrieving foodtruck record by keyword'
 		url = reverse('foodtruck_list')
 		data0 = {'objectid': 0, 'applicant':'Pizza', 'x': 0.0, 'y': 0.5}
 		data1 = {'objectid': 1, 'applicant':'Chicago', 'fooditems': 'deep dish pizza and sandwiches', 'x': 1.0, 'y': 1.0}
@@ -127,14 +137,14 @@ class FoodTruckAPITestCase(APITestCase):
 		self.assertEqual(len(response.data), 2)
 		self.assertEqual(response.data[0]['objectid'], 0)
 		self.assertEqual(response.data[1]['objectid'], 1)
-
+		print 'pass'
 		
 	
 	def test_foodtrucks_searchByLocation(self):
 		"""
-		Test retrieving,  foodtrucks nearby
+		Test retrieving  foodtrucks nearby
 		"""
-
+		print 'API Test: retrieving  foodtrucks nearby'
 		url = reverse('foodtruck_list')
 		data = [{'objectid': 0,  'latitude':37.7841781516735  , 'longitude':-122.394064145441 },\
 				{'objectid': 1,  'latitude':37.7862060821039  , 'longitude':-122.402532491346 },  	#ft2 is closest to ft0\
@@ -169,10 +179,5 @@ class FoodTruckAPITestCase(APITestCase):
 		response = self.client.get('/foodtrucks/bylocation?latitude=%f&longitude=%f&radius=%f' % (lat, lon, rad), format='json')
 		self.assertEqual(response.status_code, status.HTTP_200_OK)
 		self.assertEqual(len(response.data), 1)
+		print 'pass'
 
-class FoodTruckStressTestCase(APITestCase):
-	"""
-	Test the throughput
-	"""
-	def setUp(self):
-		pass

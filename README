@@ -3,7 +3,7 @@ Food Trucks
 A web app prototype designed for the backend track position application of Uber.
 
 Technical Choices
-Given the test's requirements and dataset available, I decided to develop a web application (3-year experience). I chose to implement the service on the top of Django, because for a prototype, convenience to use is one of the primary considerations. Django provides clear and straightforward architecture, powerful functionalities in networking, rendering, and database configuration, and thorough documentations. RESTful (1-year experience) APIs were implemented to increase the accessability to data. HTTP methods such as GET, POST, PUT and DELETE are supported to manage the dataset. Django REST framework, a RESTful version of Django (6-month experience) was selected to empower the APIs' implementation.
+Given the test's requirements and dataset available, I decided to develop a web application (3-year experience). I chose to implement the service on the top of Django, because for a prototype, convenience to use is one of the primary considerations. Django provides clear and straightforward architecture, powerful functionalities in networking, rendering, and database configuration, and thorough documentations. RESTful (1-year experience) APIs were implemented to increase the accessability to data. HTTP methods such as GET, POST, PUT and DELETE are supported to manage the dataset. Django REST framework, a RESTful version of Django (6-month experience) was selected to enpower the APIs' implementation. The data format is mainly json. Google Maps APIs were used to geolocalize the user. MySQL(2-year experience) was selected as the local database and Heroku is where I deployed it on: http://secure-savannah-5441.herokuapp.com. A 1-dyno server is used (it's free!).
 Specifically, Two tiers are integrated in this prototype:
 Frontend: a page localizing yourself and helping search for the food trucks near you
 Backend: data services including 
@@ -21,5 +21,16 @@ Trade-offs
 Due to time consiserations and easy testing for both you and me, authentication is left out in this prototype, which is actually super important for a production. So is logging.
 Not all the attributes are supported to query in the database, such as address, license, etc.
 The application is primarily based in San Francisco, neither is the data available in other places nor are the features tested, such as the location optimization.
+Some food trucks lack coordinates information but have address. The coordinates could have been retrived from address using Google Map APIs. Didn't do due to limited time.
 Food truck information cannot be updated automatically. Haven't check if DataSF is real-time updated.
 Didn't pay much attention on frontend, more javascripts features and asynchronous requests (AJAX) could have made it cooler.
+
+Refer to docs/doc.pdf for the web's architecture, APIs and testing.
+
+Check out my Linkedin profile if interested: linkedin.com/pub/erzhuo-ernest-wang/24/425/8bb/
+Also my Github repositories: https://github.com/ernestwang. 
+The project airline_paxos is a recent course project for Distributed Systems, which is very interesting. The link: https://github.com/ernestwang/airline_paxos.
+
+
+
+

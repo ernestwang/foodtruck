@@ -3,6 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0,
     user-scalable=no" />
+    <title> Food Trucks in SF</title>
     <style type="text/css">
       
       #map-canvas { height: 100% }
@@ -34,6 +35,7 @@
                   <h1>Food Trucks Nearby <small>San Francisco only</small></h1>
                 </div>
                 <p>Move map to localize yourself and find your favourite food!</p>
+                <p>select the range of search (miles) and the number limit of results</p>
                 <form method="post" id="form" action="{% url 'foodtruck_home' %}">
                   <table>
                     {% for field in form.visible_fields %}
