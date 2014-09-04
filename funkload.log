@@ -1,4 +1,8 @@
-2014-09-03 12:36:14,667 INFO test_simple: [test_simple] description not found
-2014-09-03 12:36:14,667 DEBUG test_simple: Starting -----------------------------------
+2014-09-04 01:37:17,975 INFO test_load: [test_load] description not found
+2014-09-04 01:37:17,975 DEBUG test_load: Starting -----------------------------------
 	
-2014-09-03 12:36:14,667 INFO test_simple: [main] url not found
+2014-09-04 01:37:17,975 INFO test_load: [main] url not found
+2014-09-04 01:37:18,024 INFO test_simple: [test_simple] description not found
+2014-09-04 01:37:18,024 DEBUG test_simple: Starting -----------------------------------
+	
+2014-09-04 01:37:18,024 INFO test_simple: [main] url not found
