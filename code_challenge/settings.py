@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import dj_database_url
 
 
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+DATABASES = {'default': dj_database_url.config()}
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
