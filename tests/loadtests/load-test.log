@@ -1,5 +1,0 @@
-2014-09-04 14:31:04,870 DEBUG test_load: Starting -----------------------------------
-	Test the searchByLocation API
-2014-09-04 14:31:04,870 DEBUG test_load: GET: http://secure-savannah-5441.herokuapp.com/foodtrucks/bylocation?latitude=37.767291&longitude=-122.361728&radius=1.718141&limit=18
-	Page 1: Get url ...
-2014-09-04 14:31:05,369 DEBUG test_load:  Done in 0.499s
